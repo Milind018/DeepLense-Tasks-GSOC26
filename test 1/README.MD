@@ -25,18 +25,61 @@ The primary objective was to build a **highly accurate and robust classifier** c
 ## 3. Our Approach
 
 ### Model Selection:
-- Efficient B1 for image classification
+We use **EfficientNet-B1** (via `timm`) for **multi-class image classification**. The model is initialized with pretrained ImageNet weights and modified to output **three classes** corresponding to different substructure types (`no`, `sphere`, `vort`). EfficientNet is chosen for its strong performance and efficiency on image-based tasks.
+
+---
 
 ### Data Preprocessing and Augmentation:
-- Image normalization
-- Separate transforms for training and validation
-- Basic augmentations to improve generalization
+The input data consists of **3-channel astronomical images (64×64)**.
+
+- Images are resized to **224×224** to match EfficientNet input requirements  
+- A **log transformation followed by z-score normalization** is applied to standardize pixel values  
+
+**Training augmentations:**
+- Random rotations  
+- Horizontal flips  
+- Vertical flips  
+
+**Validation/Test preprocessing:**
+- Only resizing and normalization (no augmentation)  
+
+These steps improve generalization and stabilize training.
+
+---
 
 ### Training Strategy:
-- Loss: **Cross-Entropy Loss**
-- Optimizer: **Adam**
-- Multi-epoch training with validation monitoring
-- Best model saved based on validation performance
+
+- **Loss:**  
+  Cross-Entropy Loss (`CrossEntropyLoss`) is used for multi-class classification.
+
+- **Optimizer:**  
+  `AdamW` optimizer with a low learning rate ensures stable convergence and better generalization.
+
+- **Learning Rate Scheduler:**  
+  Cosine Annealing LR scheduler is used to gradually reduce the learning rate over epochs.
+
+- **Multi-epoch training:**  
+  The model is trained for **40 epochs** using mini-batch gradient descent, allowing it to learn complex hierarchical features.
+
+- **Best model saving:**  
+  The trained model weights are saved after training as:
+
+  test_I_trained_wts_best_40ep.pth
+
+---
+
+### Inference Strategy:
+During inference, the model outputs class probabilities using **softmax**, and final predictions are obtained via **argmax** over the three classes.
+
+To improve robustness, **Test-Time Augmentation (TTA)** is applied:
+- Rotations (0°, 90°, 180°, 270°)  
+- Horizontal flips  
+
+Predictions from augmented versions are averaged to produce final outputs.
+
+---
+
+This approach enables robust multi-class classification of gravitational lens substructures using deep convolutional networks and data augmentation techniques.
 
 ---
 
