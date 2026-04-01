@@ -1,4 +1,4 @@
-# Multi-Class Gravitational Lens Substructure Classification
+# Binary Gravitational Lens Substructure Classification
 
 ## 1. Overview
 
