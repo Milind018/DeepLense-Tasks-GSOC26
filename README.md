@@ -12,3 +12,5 @@ This repository contains implementations of deep learning models for the analysi
 ```
 
 Please go to each task folder for notebooks, AUC, ROC, Confusion Matrix, etc for evaluation purposes
+
+I am applying for this particular project ![Gravitaional lens Finding - DEEPLENSE6](https://ml4sci.org/gsoc/2026/proposal_DEEPLENSE6.html)
