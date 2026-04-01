@@ -6,8 +6,8 @@ This repository contains implementations of deep learning models for the analysi
 
 ```
 /
-├── task1/               # Original multi-class classification implementation
-├── task5/               # Original binary lens finder implementation
+├── test 1/               # Original multi-class classification implementation
+├── test 5/               # Original binary lens finder implementation
 
 ```
 
