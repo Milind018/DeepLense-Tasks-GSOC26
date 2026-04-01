@@ -14,7 +14,7 @@ The primary objective was to build a **highly accurate and robust classifier** c
 
 ## 2. The Dataset
 
-- Validation dataset: **~7500 samples per class**
+- Validation dataset: **~7500 samples**
 - Train dataset size: **~30000 images**
 - Images represent simulated gravitational lensing systems with different substructure morphologies
 - Data split into **training, and validation sets**
